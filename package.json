@@ -1,0 +1,19 @@
+{
+  "name": "splitwise-clone",
+  "version": "1.0.0",
+  "description": "Splitwise Clone with Live Payment Gateway",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramana721/splitwise-clone.git"
+  },
+  "author": "Ramana, Abhishek, Rahul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ramana721/splitwise-clone/issues"
+  },
+  "homepage": "https://github.com/ramana721/splitwise-clone#readme"
+}
