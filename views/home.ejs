@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <style>
+        body{
+            background-color: black;
+                display: flex;
+                justify-content: center; 
+                align-items: center;     
+                height: 100vh;
+                margin: 0 auto;
+                overflow: hidden;
+        }
+        /* target only the main visual container */
+        .card{
+            background-color: rgb(75, 17, 129);
+            padding: 2rem 3rem;
+            color: #000000; 
+            border-radius: 12px;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            perspective: 800px;
+            z-index: 2;
+        }
+
+        .card:hover {
+            transform: rotateX(30deg) rotateY(40deg) scale(2);
+            cursor: pointer;
+        }
+        .particle {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: -200px 0;
+            width: 8px;
+            height: 8px;
+            color: #fff;
+            background: rgb(203, 180, 4);
+            border-radius: 50%;
+            animation: circular 30s infinite cubic-bezier(0.68, -1.55, 0.265, 1.55);
+            opacity: 0.8;
+            transform: translate(0px,0px);
+            z-index: 1;
+        }
+        .particle {
+            box-shadow: 0 0 10px 5px gold;
+            filter: blur(1px);
+        }
+        #trail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            color: #fff;
+        }
+        @keyframes circular {
+            0%   { transform: rotate(0deg) translate(200px) rotate(0deg); }
+            100% { transform: rotate(360deg) translate(200px) rotate(-360deg); }
+        }
+
+        /* remove default h1 margins so the colored block stays tight */
+        .card h1{ margin: 0; font-family: Georgia, 'Times New Roman', serif; font-weight: 700; }
+    </style>
+    <canvas id="trail" class="trail"></canvas>
+    <div class="card">
+        <h1>Split wise Clone </h1>
+    </div>
+    <div class="particle">.</div>
+    <script>
+        const canvas = document.getElementById("trail");
+        if (!canvas) {
+            console.error('trail canvas not found');
+        }
+        const ctx = canvas.getContext("2d");
+
+        // initialize and keep canvas sized to the window
+        function resizeCanvas(){
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // optional initial fill so fade works consistently
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0,0,canvas.width, canvas.height);
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particle = document.querySelector(".particle");
+
+        function draw() {
+            const rect = particle.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+
+            // fade old line (erase slowly)
+            ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // draw current particle point
+            ctx.fillStyle = "gold";
+            ctx.beginPath();
+            ctx.arc(x, y, 1, 0, Math.PI * 7);
+            ctx.fill();
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+
+    </script>
+
+
+    
+</body>
+</html>
