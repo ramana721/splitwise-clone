@@ -13,8 +13,9 @@ app.use(express.static('./assets'));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-
-
+app.get("/home",(req,res)=>{
+    return res.render('home');
+})
 
 app.listen(port, function(err){
     if (err){
