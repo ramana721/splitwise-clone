@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ramana721/splitwise-clone/issues"
   },
-  "homepage": "https://github.com/ramana721/splitwise-clone#readme"
+  "homepage": "https://github.com/ramana721/splitwise-clone#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
