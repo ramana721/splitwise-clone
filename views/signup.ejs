@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #f3f3f3;
+        }
+
+        .background-container {
+            height: 100vh;
+            background-image: url('./computerlogin-cuate.svg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .form-div {
+            height: 80%;
+            width: 100%;
+            background-color: hsl(200, 18%, 26%);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.18);
+            box-shadow: 0 8px 32px rgba(31,38,135,0.37);
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-form {
+            color: white;
+            display: inline-block;
+            width: 80%;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* SVG sits behind form */
+        #randomCurveSVG {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* DOT styling */
+        #animateDot {
+            fill: gold;
+            filter: drop-shadow(0 0 6px gold);
+        }
+        .btn-primary{
+                font-weight: 600 !important;
+                background-color: hsl(44, 100%, 58%);color: #000 !important;
+                border: #000 solid 1px;
+        }
+        .btn-primary:hover{
+                background-color: hsl(44, 80%, 52%);
+        }
+        .btn-primary:active {
+            background-color: hsl(44, 80%, 52%) !important;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="row p-0 m-0">
+        <div class="col-8 background-container p-0"></div>
+
+        <div class="col-4 d-flex align-items-center">
+            <div class="form-div d-flex align-items-center justify-content-center">
+
+                <!-- BACKGROUND CURVE SVG -->
+                <svg id="randomCurveSVG">
+                    <path id="curvePath" fill="none" stroke="gold" stroke-width="3"
+                          stroke-linecap="round" />
+                    <circle id="animateDot" r="0"></circle>
+
+                    <!-- Motion animation (path set by JS) -->
+                    <animateMotion id="dotMotion" dur="3s" fill="freeze"></animateMotion>
+                </svg>
+
+                <div class="main-form">
+                    <form action="/signup" method="post">
+                        <h4 class="text-md-center">Split-wise clone</h4>
+
+                        <div class="d-flex ">
+                            <div class="form-group py-2 mx-1">
+                                <label>First Name</label>
+                                <input type="text" name="firstname" class="form-control">
+                            </div>
+                            <div class="form-group py-2 mx-1">
+                                <label>Last Name</label>
+                                <input type="text" name="lastname" class="form-control">
+                            </div>
+
+                        </div>
+                        <div class="form-group py-2">
+                            <label>Email address</label>
+                            <input type="email" name="email" class="form-control">
+                        </div>
+
+
+                        <div class="form-group py-2">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control">
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input type="checkbox" name="remember" class="form-check-input">
+                            <div style="display: flex; justify-content: space-between;">
+                                <label>Remember me</label>
+                                <a href="/login" class="text-white">Login Back</a>
+                            </div>
+                            
+                        </div>
+
+                        <div class="text-end py-4">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT: full-border curve + slow animation -->
+    <script>
+        
+        const svg = document.getElementById("randomCurveSVG");
+        const curve = document.getElementById("curvePath");
+        const dot = document.getElementById("animateDot");
+        const motion = document.getElementById("dotMotion");
+        const formBox = document.querySelector(".form-div");
+
+        let animating = false;
+
+        function randomCurve() {
+            if (animating) return;    // prevent spam animation
+            animating = true;
+
+            const w = svg.clientWidth;
+            const h = svg.clientHeight;
+
+            // Anchored border-touching curve (always covers all edges)
+            const p1 = `0,${Math.random() * h}`;          // Left border
+            const c1 = `${Math.random() * w},0`;          // Top border
+            const c2 = `${Math.random() * w},${h}`;       // Bottom border
+            const p2 = `${w},${Math.random() * h}`;       // Right border
+
+            const d = `M ${p1} C ${c1} ${c2} ${p2}`;
+
+            // Apply curve path
+            curve.setAttribute("d", d);
+
+            // Prepare stroke animation
+            const length = curve.getTotalLength();
+            curve.style.strokeDasharray = length;
+            curve.style.strokeDashoffset = length;
+            curve.style.transition = "stroke-dashoffset 3s ease";
+
+            // Reset stroke
+            requestAnimationFrame(() => {
+                curve.style.strokeDashoffset = "0";
+            });
+
+            // Dot movement
+            motion.setAttribute("path", d);
+            motion.beginElement(); // start movement
+
+            // Dot grows from small → normal size
+            dot.setAttribute("r", "0");
+            dot.style.transition = "r 0.6s ease-in";
+            requestAnimationFrame(() => dot.setAttribute("r", "8"));
+
+            // Reset after finish
+            setTimeout(() => animating = false, 3200);
+        }
+
+        // Trigger animation on hover
+        formBox.addEventListener("mouseenter", randomCurve);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
