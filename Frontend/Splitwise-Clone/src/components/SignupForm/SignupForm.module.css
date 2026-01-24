@@ -1,0 +1,40 @@
+.mainForm {
+  color: white;
+  width: 80%;
+  position: relative;
+  z-index: 5;
+}
+
+/* scoped SVG wrapper */
+.curveSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.animateDot {
+  fill: gold;
+  filter: drop-shadow(0 0 6px gold);
+}
+
+.formFooter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnPrimary {
+  font-weight: 600;
+  background-color: hsl(44, 100%, 58%);
+  color: #000;
+  border: 1px solid #000;
+}
+
+.btnPrimary:hover,
+.btnPrimary:active {
+  background-color: hsl(44, 80%, 52%);
+    color: #000;
+  border: 1px solid #000;
+}
+

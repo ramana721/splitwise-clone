@@ -1,0 +1,26 @@
+/* LoginSignup.module.css */
+
+.backgroundContainer {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.formDiv {
+  height: 80%;
+  width: 100%;
+  background-color: hsl(200, 18%, 26%);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.imgFit{
+    height: 3.5rem;
+    align-items: center;
+    justify-content: center;
+}
