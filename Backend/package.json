@@ -4,7 +4,8 @@
   "description": "Splitwise Clone with Live Payment Gateway",
   "main": "index.js",
   "scripts": {
-    "start":"npx nodemon index.js",
+    "start": "npx nodemon index.js",
+    "dev":"npx nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +22,7 @@
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "mongoose": "^9.0.0",
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.1.11",
+    "vite": "^7.3.1"
   }
 }
