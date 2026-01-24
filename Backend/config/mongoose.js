@@ -1,8 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-main().catch(err => console.log(err));
+mongoose.connect('mongodb://127.0.0.1:27017/splitwise');
 
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/splitwisedb');
-  console.log("connected to database!")
-}
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'Error connecting to MongoDB'));
+db.once('open', () => {
+  console.log('\nConnected to MongoDB');
+});
+
+export default db;
