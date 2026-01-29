@@ -4,4 +4,5 @@ import reactfavi from './react.svg';
 import spliwisebrandsvgdark from './splitwisebranding.svg';
 import spliwisebrandsvglight from './splitwisebrandingwhite.svg';
 import spliwiselogosvg from './splitwisebranding.svg';
-export { loginbg, reactfavi, spliwisebrandsvgdark,spliwisebrandsvglight , spliwiselogosvg  };
+import googleLogo from './googleLogo.svg';
+export { loginbg, reactfavi, spliwisebrandsvgdark,spliwisebrandsvglight , spliwiselogosvg,googleLogo  };

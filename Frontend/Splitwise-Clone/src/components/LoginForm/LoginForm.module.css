@@ -44,3 +44,23 @@
     align-items: center;
     justify-content: center;
 }
+
+.googleLogo {
+    height: 32px;
+    width: 32px;
+    margin-right: 0.5rem;
+}
+
+.googleBtnStyle {
+    background-color: white;
+    color: black;
+    font-weight: 600;
+    border: 1px solid #ccc;
+} 
+.googleBtnStyle:hover,
+.googleBtnStyle:active {
+    background-color: rgb(232, 230, 230);
+    color: black;
+    font-weight: 600;
+    border: 1px solid #ccc;
+} 

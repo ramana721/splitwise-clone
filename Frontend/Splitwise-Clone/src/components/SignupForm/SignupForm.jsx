@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import styles from './SignupForm.module.css'
-import { spliwisebrandsvglight } from '../../assets/svgs'
+import { googleLogo, spliwisebrandsvglight } from '../../assets/svgs'
 function SignupForm() {
     return (
         <>
@@ -32,7 +32,6 @@ function SignupForm() {
                         <label>Password</label>
                         <input type="password" name="password" className="form-control" />
                     </div>
-
                     <div className="form-group form-check">
                         <input type="checkbox" name="remember" className="form-check-input" />
                         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -44,6 +43,14 @@ function SignupForm() {
 
                     <div className="text-end py-4">
                         <button type="submit" className={`btn ${styles.btnPrimary}`}>Sign Up</button>
+                    </div>
+                    <div className="form-group d-flex justify-content-center py-2" >
+                        <div className="googleBtn">
+                            <button type="button" className={`btn ${styles.googleBtnStyle}`}>
+                                <img src={googleLogo} className={styles.googleLogo}  alt="" />
+                                Sign up with Google
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
