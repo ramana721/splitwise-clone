@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
-  LoginSignup
-  // Cart,
+  LoginSignup,
+  Dashboard,
   // Checkout,
   // Homelayout,
-  // Landing,
+  Landing,
   // Login,
   // OrderConfirmation,
   // OrderHistory,
@@ -27,6 +27,8 @@ const router = createBrowserRouter([
   // },
   { path: '/login',element: <LoginSignup type="login"/>},
   { path: '/signup',element: <LoginSignup type="signup"/>},
+  { path: '/dashboard',element: <Dashboard isLoggedin={true}/>},
+  { path: '/',element: <Landing/>},
 
   // {
   //   path: '/register',

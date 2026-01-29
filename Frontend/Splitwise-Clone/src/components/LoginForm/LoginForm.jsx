@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './LoginForm.module.css'
-import { spliwisebrandsvglight } from '../../assets/svgs'
+import { googleLogo, spliwisebrandsvglight } from '../../assets/svgs'
 function LoginForm() {
     return (
         <>
@@ -30,6 +30,14 @@ function LoginForm() {
 
                     <div className="text-end py-4">
                         <button type="submit" className={`btn ${styles.btnPrimary}`}>Login</button>
+                    </div>
+                    <div className="form-group d-flex justify-content-center py-2" >
+                        <div className="googleBtn">
+                            <button type="button" className={`btn ${styles.googleBtnStyle}`}>
+                                <img src={googleLogo} className={styles.googleLogo}  alt="" />
+                                Sign in with Google
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
