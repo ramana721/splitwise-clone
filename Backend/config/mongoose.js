@@ -1,12 +1,15 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-mongoose.connect('mongodb://127.0.0.1:27017/splitwise');
+dotenv.config();
+
+mongoose.connect(process.env.MONGO_URI);
 
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'Error connecting to MongoDB'));
 db.once('open', () => {
-  console.log('\nConnected to MongoDB');
+  console.log('\nConnected to MongoDB'.bold);
 });
 
 export default db;
