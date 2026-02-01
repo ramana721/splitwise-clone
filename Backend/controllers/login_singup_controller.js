@@ -1,30 +1,9 @@
 const User = require('../models/users')
 
-module.exports.redirect =  (req,res)=> {
-    return res.redirect('/login');
-}
 
 
-module.exports.login =  (req,res)=>{
-    return res.render('login',{
-        title: 'Splitwise | Login'
-    });
-}
 
-module.exports.signup =  (req,res)=>{
-    return res.render('signup',{
-        title: 'Splitwise | Signup'
-    });
-}
-
-module.exports.home =  (req,res)=>{
-    return res.render('home',{
-        title:'Home'
-    });
-}
-
-
-module.exports.create= (req,res)=>{
+module.exports.createUser= (req,res)=>{
     try{
         User.create({
             firstname:req.body.firstname,
@@ -41,11 +20,25 @@ module.exports.create= (req,res)=>{
 
     }
 
-    setTimeout(() => {
-        return res.redirect('/login');
-    }, 2000);
+    return res.status(200).json({
+    success: true,
+    message: "User created successfully"
+    });
+
+  
     
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -67,4 +60,29 @@ module.exports.logininto = async (req, res) => {
         console.log(err);
         return res.redirect("/login");
     }
+}
+
+
+
+module.exports.redirect =  (req,res)=> {
+    return res.redirect('/login');
+}
+
+
+module.exports.login =  (req,res)=>{
+    return res.render('login',{
+        title: 'Splitwise | Login'
+    });
+}
+
+module.exports.signup =  (req,res)=>{
+    return res.render('signup',{
+        title: 'Splitwise | Signup'
+    });
+}
+
+module.exports.home =  (req,res)=>{
+    return res.render('home',{
+        title:'Home'
+    });
 }

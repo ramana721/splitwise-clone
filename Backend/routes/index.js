@@ -1,21 +1,21 @@
 const express = require('express');
 const router = express.Router();
 
-const homeController  = require('../controllers/home_controller')
+router.use('/api',require('./auth'));
 
-router.get("/",homeController.redirect);
 
-router.get("/home",homeController.home);
 
-router.get("/login",homeController.login)
 
-router.post("/login", homeController.logininto);
 
-router.get("/signup", homeController.signup);
 
-router.post("/signup", homeController.create);
-
+// router.use
 // router.use('/users',require('./user'));
+// router.post("/login", homeController.logininto);
+// router.get("/login",homeController.login);
+// router.get("/",homeController.redirect);
+// router.post("/signup", homeController.create);
+// router.get("/signup", homeController.signup);
+// router.get("/home",homeController.home);
 
 
 
