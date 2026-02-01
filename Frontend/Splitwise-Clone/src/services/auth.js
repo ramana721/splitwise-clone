@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const signup = async (data) => {
   const res = await fetch('/api/signup', {
     method: 'POST',
@@ -10,3 +12,5 @@ export const signup = async (data) => {
   console.log('Status:', res.status);
   return result;
 };
+
+export const googleAuth = async (code) => axios.get(`/google?code=${code}`);
