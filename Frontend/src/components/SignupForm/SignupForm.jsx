@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import styles from './SignupForm.module.css';
 import { googleLogo } from '../../assets/svgs';
-import { signup } from '../../services/auth';
+import { googleAuth, signup } from '../../services/auth';
 // import { useNavigate } from 'react-router-dom';
 import { useGoogleLogin } from '@react-oauth/google'
 function SignupForm() {
@@ -12,6 +12,12 @@ function SignupForm() {
         try {
             //call api from using recieved code
             if(authResult?.code){
+                console.log("authcode ",authResult.code);
+                const result = await googleAuth(authResult.code);
+                console.log(result);
+                const {email,firstname,image} = result.data.user;
+                console.log(`email: ${email} name: ${firstname} image: ${image}`);
+
 
                 console.log(authResult);
             }

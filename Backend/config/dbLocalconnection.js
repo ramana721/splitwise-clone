@@ -9,7 +9,7 @@ const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'Error connecting to MongoDB'));
 db.once('open', () => {
-  console.log('\nConnected to MongoDB'.bold);
+  console.log('\nConnected to Local MongoDB'.bold);
 });
 
 export default db;

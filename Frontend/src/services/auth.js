@@ -13,4 +13,11 @@ export const signup = async (data) => {
   return result;
 };
 
-export const googleAuth = async (code) => axios.get(`/google?code=${code}`);
+export const googleAuth = 
+  async (code) => {
+    console.log("calling /auth/google backend")
+    const result = await axios.post(`/auth/google?code=${code}`);
+    console.log(result);
+    return result;
+
+  };
