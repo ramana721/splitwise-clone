@@ -1,11 +1,14 @@
 import { useState } from 'react'
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter,Navigate } from "react-router-dom";
+import { GoogleOAuthProvider } from '@react-oauth/google'
+import './App.css'
 import {
   LoginSignup,
   Dashboard,
   // Checkout,
   // Homelayout,
   Landing,
+  PageNotFound
   // Login,
   // OrderConfirmation,
   // OrderHistory,
@@ -17,38 +20,29 @@ import {
   // Signup,
   // UserProfile,
 } from './pages'
-import './App.css'
 
+
+  const GoogleAuthWrapper = () => {
+    return <GoogleOAuthProvider clientId='25419899596-8l27titrr3q4qne1l4ish6lluar305ag.apps.googleusercontent.com'>
+      <LoginSignup type="signup"></LoginSignup>
+    </GoogleOAuthProvider>
+  } 
 
 const router = createBrowserRouter([
-  // {
-  //   path: '/',
-  //   element: <Homelayout />,
-  // },
   { path: '/login',element: <LoginSignup type="login"/>},
-  { path: '/signup',element: <LoginSignup type="signup"/>},
+  { path: '/signup',element: <GoogleAuthWrapper type="signup"/>},
   { path: '/dashboard',element: <Dashboard isLoggedin={true}/>},
   { path: '/',element: <Landing/>},
+  { path: '*',element: <PageNotFound/>},
 
-  // {
-  //   path: '/register',
-  //   element: <Signup />,
-  // },
-  // {
-  //   path: '/cart',
-  //   element: <Cart />,
-  // },
 ]);
 
 
 
 
 
-
-
-
-
 function App() {
+
 
   return <RouterProvider router={router} />;
 }

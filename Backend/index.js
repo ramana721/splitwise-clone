@@ -1,7 +1,9 @@
 const express = require('express');
-const dotenv = require('dotenv');
+const dotenv = require('dotenv');``
 const logger = require('./middleware/logger');
-const { default: db } = require('./config/mongoose');
+const { default: db } = require('./config/dbLocalconnection');
+// const { default: cloudDb } = require('./config/dbCloudconnection');
+
 const router = require('./routes');
 
 
@@ -17,12 +19,12 @@ app.use(logger);
 app.use(express.urlencoded());
 app.use(express.static('./assets'));
 app.use(express.json())
-app.use('/',require('./routes'));
 
 
 
 //Routes
 app.use('/', router);
+app.use('/',require('./routes'));
 
 
 
